@@ -4,10 +4,11 @@ export class Favorities {
   constructor(root) {
     this.root = document.querySelector(root);
     this.load()
+    
   }
 
   checkEmpty() {
-    const emptyState = this.root.querySelector(".nodisplay")
+    const emptyState = this.root.querySelector("#nodisplay")
     this.entries.length <= 0 ? emptyState.classList.remove("close") : emptyState.classList.add("close")
   }      
 
