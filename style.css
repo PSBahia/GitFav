@@ -187,3 +187,11 @@ td .remove{
     color: red;
     cursor: pointer;
 }
+
+.nodisplay{
+    height: 40rem;
+}
+
+.close{
+    display: none;
+}

@@ -6,8 +6,14 @@ export class Favorities {
     this.load()
   }
 
+  checkEmpty() {
+    const emptyState = this.root.querySelector(".nodisplay")
+    this.entries.length <= 0 ? emptyState.classList.remove("close") : emptyState.classList.add("close")
+  }      
+
   load(){
     this.entries = JSON.parse(localStorage.getItem('@github-favorities:')) || []
+    
   }
 
   save(){
@@ -16,7 +22,7 @@ export class Favorities {
 
   async add(username){
     try{
-        const userExists =this.entries.find(entry => entry.login === username)
+        const userExists = this.entries.find(entry => entry.login === username)
         
         if(userExists){
             throw new Error('Usuário já cadstrado')
@@ -68,7 +74,9 @@ export class FavoritiesView extends Favorities {
   update() {
     this.removeAllTr();
 
-    
+    const close = document.getElementById('nodisplay')
+    close.classList.toggle('close')
+     
     this.entries.forEach( user => {
         const row = this.createRow()
         row.querySelector('.user img').src = `https://github.com/${user.login}.png`
@@ -112,7 +120,7 @@ export class FavoritiesView extends Favorities {
                 <button class="remove">Remover</button>
             </td>
         </tr>`
-    
+     
     return tr
   }
 
@@ -121,5 +129,6 @@ export class FavoritiesView extends Favorities {
     this.tbody.querySelectorAll("tr").forEach((tr) => {
       tr.remove();
     });
+
   }
 }
